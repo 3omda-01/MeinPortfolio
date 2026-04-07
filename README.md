@@ -2,7 +2,8 @@
 this is a simple terminal-style portfolio i made using just html, css, and javascript.
 
 i wanted something different from the usual portfolio websites, so i went with a linux terminal vibe (arch + hyprland type shi). everything works with commands, just like a real terminal.
-
+## Website:
+https://3omda-01.github.io/MeinPortfolio/
 ## what it does
 
 basically you type commands and it shows info about me.
