@@ -1,0 +1,237 @@
+
+<style>
+body{background:#0D1117}
+*{box-sizing:border-box;margin:0;padding:0}
+.term{font-family:'JetBrains Mono','Fira Code','Cascadia Code',monospace;background:#0D1117;color:#A7C7E7;border-radius:10px;overflow:hidden;width:100%;min-height:540px}
+.body{padding:16px 20px;min-height:480px;cursor:text}
+.neo{display:flex;gap:20px;margin-bottom:14px;align-items:flex-start}
+.arch-logo{color:#7AA2F7;font-size:11px;line-height:1.15;white-space:pre;flex-shrink:0;margin-top:2px}
+.info-block{flex:1;font-size:12.5px;line-height:1.65}
+.info-row{display:flex;gap:0}
+.ikey{color:#7aa2f7;font-weight:700;min-width:110px}
+.ival{color:#A7C7E7}
+.sep{color:#44475A;margin:4px 0}
+.colors{display:flex;gap:3px;margin-top:6px}
+.swatch{width:14px;height:14px;border-radius:2px}
+.line{display:flex;align-items:center;gap:0;margin-bottom:2px;flex-wrap:wrap}
+.prompt .u{color:#9ECE6A}
+.prompt .at{color:#BB9AF7}
+.prompt .h{color:#7AA2F7}
+.prompt .dir{color:#9ECE6A}
+.cmd{color:#A7C7E7;margin-left:6px}
+.out{color:#A7C7E7;font-size:12.5px;line-height:1.6;padding-left:4px}
+.out.green{color:#9ECE6A}
+.out.blue{color:#7AA2F7}
+.out.yellow{color:#E0AF68}
+.out.purple{color:#BB9AF7}
+.out.red{color:#F7768E}
+.out.cyan{color:#7DCFFF}
+.out.dim{color:#44475A}
+.shdr{color:#7AA2F7;font-weight:700;font-size:12.5px;margin:8px 0 3px}
+.tag{display:inline-block;background:#292C35;border:1px solid #44475A;border-radius:3px;padding:1px 6px;font-size:11px;margin:2px 2px 2px 0;color:#9ece6a}
+.tag.b{color:#7AA2F7;border-color:#2a3d6d}
+.tag.p{color:#BB9AF7;border-color:#3d2a6d}
+.tag.c{color:#7DCFFF;border-color:#1a4040}
+.input-row{display:flex;align-items:center;margin-top:10px}
+.input-row input{background:transparent;border:none;outline:none;color:#A7C7E7;font-family:inherit;font-size:12.5px;flex:1}
+
+@media (max-width: 600px) {
+  .term { min-height: auto; border-radius: 0; }
+  .body { padding: 12px 14px; min-height: auto; }
+  .neo { flex-direction: column; gap: 10px; }
+  .arch-logo { display: none; }
+  .info-block { font-size: 11px; }
+  .ikey { min-width: 80px; }
+  .out, .cmd, .input-row input, .shdr { font-size: 11px; }
+  .tag { font-size: 10px; padding: 1px 4px; }
+}
+body{background:#0D1117}
+*{box-sizing:border-box;margin:0;padding:0}
+.term{font-family:'JetBrains Mono','Fira Code','Cascadia Code',monospace;background:#0D1117;color:#A7C7E7;border-radius:10px;overflow:hidden;width:100%;min-height:540px}
+.body{padding:16px 20px;min-height:480px;cursor:text}
+.neo{display:flex;gap:20px;margin-bottom:14px;align-items:flex-start}
+.arch-logo{color:#7AA2F7;font-size:11px;line-height:1.15;white-space:pre;flex-shrink:0;margin-top:2px}
+.info-block{flex:1;font-size:12.5px;line-height:1.65}
+.info-row{display:flex;gap:0}
+.ikey{color:#7aa2f7;font-weight:700;min-width:110px}
+.ival{color:#A7C7E7}
+.sep{color:#44475A;margin:4px 0}
+.colors{display:flex;gap:3px;margin-top:6px}
+.swatch{width:14px;height:14px;border-radius:2px}
+.line{display:flex;align-items:center;gap:0;margin-bottom:2px;flex-wrap:wrap}
+.prompt .u{color:#9ECE6A}
+.prompt .at{color:#BB9AF7}
+.prompt .h{color:#7AA2F7}
+.prompt .dir{color:#9ECE6A}
+.cmd{color:#A7C7E7;margin-left:6px}
+.out{color:#A7C7E7;font-size:12.5px;line-height:1.6;padding-left:4px}
+.out.green{color:#9ece6a}
+.out.blue{color:#7aa2f7}
+.out.yellow{color:#E0AF68}
+.out.purple{color:#BB9AF7}
+.out.red{color:#F7768E}
+.out.cyan{color:#7DCFFF}
+.out.dim{color:#44475A}
+.shdr{color:#7aa2f7;font-weight:700;font-size:12.5px;margin:8px 0 3px}
+.tag{display:inline-block;background:#292C35;border:1px solid #44475A;border-radius:3px;padding:1px 6px;font-size:11px;margin:2px 2px 2px 0;color:#9ece6a}
+.tag.b{color:#7AA2F7;border-color:#2a3d6d}
+.tag.p{color:#BB9AF7;border-color:#3d2a6d}
+.tag.c{color:#7DCFFF;border-color:#1a4040}
+.input-row{display:flex;align-items:center;margin-top:10px}
+.input-row input{background:transparent;border:none;outline:none;color:#A7C7E7;font-family:inherit;font-size:12.5px;flex:1}
+</style>
+
+<div style="display:flex;justify-content:center;align-items:center;min-height:100vh;padding:16px">
+<div class="term" style="max-width:900px;width:100%">
+  <div class="body" id="terminal">
+    <div class="neo">
+      <div class="arch-logo" id="arch-art"></div>
+      <div class="info-block">
+        <div class="info-row"><span class="u">youssef</span><span class="at">@</span><span class="h">archlinux</span></div>
+        <div class="sep">─────────────────────</div>
+        <div class="info-row"><span class="ikey">OS</span><span class="ival">Arch Linux x86_64</span></div>
+        <div class="info-row"><span class="ikey">WM</span><span class="ival">Hyprland</span></div>
+        <div class="info-row"><span class="ikey">Terminal</span><span class="ival">kitty</span></div>
+        <div class="info-row"><span class="ikey">Shell</span><span class="ival">bash</span></div>
+        <div class="info-row"><span class="ikey">Theme</span><span class="ival">GitHub Dark Colorblind</span></div>
+        <div class="info-row"><span class="ikey">Font</span><span class="ival">JetBrains Mono</span></div>
+        <div class="info-row"><span class="ikey">Role</span><span class="ival">IEEE ISI SB Chair</span></div>
+        <div class="info-row"><span class="ikey">Degree</span><span class="ival">EEA – Embedded Systems</span></div>
+        <div class="info-row"><span class="ikey">Location</span><span class="ival">Ezzahra, Tunisia</span></div>
+        <div class="colors">
+          <div class="swatch" style="background:#0D1117"></div>
+          <div class="swatch" style="background:#F7768E"></div>
+          <div class="swatch" style="background:#9ECE6A"></div>
+          <div class="swatch" style="background:#E0AF68"></div>
+          <div class="swatch" style="background:#7AA2F7"></div>
+          <div class="swatch" style="background:#BB9AF7"></div>
+          <div class="swatch" style="background:#7DCFFF"></div>
+          <div class="swatch" style="background:#A7C7E7"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="line">
+      <span class="prompt"><span class="u">youssef</span><span class="at">@</span><span class="h">archlinux</span> <span class="dir">~</span> $</span>
+      <span class="cmd">help</span>
+    </div>
+    <div style="padding-left:4px;margin:3px 0 10px">
+      <div class="out dim">commands: <span style="color:#e0af68">whoami</span>  <span style="color:#e0af68">education</span>  <span style="color:#e0af68">skills</span>  <span style="color:#e0af68">roles</span>  <span style="color:#e0af68">contact</span>  <span style="color:#e0af68">links</span>  <span style="color:#e0af68">clear</span></div>
+    </div>
+
+    <div id="history"></div>
+    <div class="input-row">
+      <span class="prompt"><span class="u">youssef</span><span class="at">@</span><span class="h">archlinux</span> <span class="dir">~</span> $&nbsp;</span>
+      <input type="text" id="cmd-input" autofocus autocomplete="off" spellcheck="false">
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+document.getElementById('arch-art').textContent =
+`                   -\`
+                  .o+\`
+                 \`ooo/
+                \`+oooo:
+               \`+oooooo:
+               -+oooooo+:
+             \`/:-:++oooo+:
+            \`/++++/+++++++:
+           \`/++++++++++++++:
+          \`/+++ooooooooooooo/\`
+         ./ooosssso++osssssso+\`
+        .oossssso-\`\`\`/ossssss+\`
+       -osssssso.      :ssssssso.
+      :osssssss/        osssso+++.
+     /ossssssss/        +ssssooo/-
+   \`/ossssso+/:-        -:/+osssso+-
+  \`+sso+:-\`                 \`.-/+oso:
+ \`++:.                           \`-/+/
+ .\`                                 \`/`;
+
+const commands = {
+  whoami: () => `<div class="shdr">about me</div>
+<div class="out">Youssef Khalfaoui — Embedded Systems student, robotics enthusiast,</div>
+<div class="out">and open source advocate. Based in <span class="cyan">Ezzahra, Tunisia</span>.</div>
+<div class="out" style="margin-top:4px">Bachelor's in <span class="blue">EEA – Embedded Systems</span> at ISI Tunis (2024–present).</div>
+<div class="out">IEEE ISI SB Chair · RAS ISI Founder · Maker of things that move.</div>`,
+
+  education: () => `<div class="shdr">education</div>
+<div class="out"><span class="green">✓</span> <span class="yellow">Baccalaureate in Technical Sciences</span></div>
+<div class="out dim">  Ibn Rachik High School, Ezzahra — Graduated with honors</div>
+<div class="out" style="margin-top:5px"><span class="blue">→</span> <span class="yellow">B.Sc EEA – Embedded Systems</span> <span class="dim">(2024–present)</span></div>
+<div class="out dim">  Higher Institute of Computer Science of Tunis (ISI)</div>`,
+
+  skills: () => `<div class="shdr">languages</div>
+<span class="tag">C</span><span class="tag">C++</span><span class="tag">Python</span><span class="tag">Rust</span><span class="tag">Java</span><span class="tag">VHDL</span><span class="tag">MATLAB</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">SQL</span>
+<div class="shdr" style="margin-top:8px">tools</div>
+<span class="tag b">Linux</span><span class="tag b">PlatformIO</span><span class="tag b">CubeMX</span><span class="tag b">KiCad</span><span class="tag b">Proteus</span><span class="tag b">ROS</span><span class="tag b">Android Studio</span>
+<div class="shdr" style="margin-top:8px">hardware</div>
+<span class="tag p">STM32</span><span class="tag p">FPGA</span><span class="tag p">ESP32</span><span class="tag p">Raspberry Pi</span>
+<div class="shdr" style="margin-top:8px">other</div>
+<span class="tag c">IoT</span><span class="tag c">Robotics</span><span class="tag c">Shell</span><span class="tag c">AI Fundamentals</span><span class="tag c">GPIO</span><span class="tag c">Graphic Design</span>
+<div class="shdr" style="margin-top:8px">spoken</div>
+<span class="tag">Arabic (native)</span><span class="tag">French (pro)</span><span class="tag">English (pro)</span>`,
+
+  roles: () => `<div class="shdr">roles</div>
+<div class="out"><span class="blue">2026–27</span>  <span class="yellow">Chair</span> — IEEE ISI Student Branch</div>
+<div class="out dim">          Leading all SB activities & official IEEE rep</div>
+<div class="out" style="margin-top:4px"><span class="blue">2025–26</span>  <span class="yellow">Vice-Chair & Founder</span> — RAS ISI IEEE</div>
+<div class="out dim">          Technical trainer, robotics innovation</div>
+<div class="out" style="margin-top:4px"><span class="blue">2025–26</span>  <span class="yellow">Webmaster</span> — CS ISI IEEE</div>
+<div class="out dim">          Graphic content & website maintenance</div>
+<div class="out" style="margin-top:4px"><span class="blue">2024–25</span>  <span class="yellow">CO Head of Marketing</span> — Freeways ISI</div>
+<div class="out dim">          ISI Local Contest, Code Her Ways, ISI Robots...</div>
+<div class="out" style="margin-top:4px"><span class="blue">2025</span>     <span class="yellow">Head of Robotics & IoT</span> — Freeways ISI</div>`,
+
+  contact: () => `<div class="shdr">contact</div>
+<div class="out"><span class="cyan">email   </span> youssef.khalfaoui@ieee.org</div>
+<div class="out"><span class="cyan">phone   </span> +216 26 926 512</div>
+<div class="out"><span class="cyan">location</span> Ezzahra, Tunisia</div>`,
+
+  links: () => `<div class="shdr">links</div>
+<div class="out"><span class="purple">github  </span> <a href="https://github.com/3omda-01" style="color:#7aa2f7;text-decoration:none">github.com/3omda-01</a></div>
+<div class="out"><span class="purple">linkedin</span> <a href="https://linkedin.com/in/youssef-khalfaoui-658446314/" style="color:#7aa2f7;text-decoration:none">linkedin.com/in/youssef-khalfaoui-658446314</a></div>`,
+
+  clear: () => '__clear__',
+  help: () => `<div class="out dim">commands: <span style="color:#e0af68">whoami</span>  <span style="color:#e0af68">education</span>  <span style="color:#e0af68">skills</span>  <span style="color:#e0af68">roles</span>  <span style="color:#e0af68">contact</span>  <span style="color:#e0af68">links</span>  <span style="color:#e0af68">clear</span></div>`,
+};
+
+const history = document.getElementById('history');
+const input = document.getElementById('cmd-input');
+const cmdHist = [];
+let histIdx = -1;
+
+function addEntry(cmd, output) {
+  if (output === '__clear__') { history.innerHTML = ''; return; }
+  const e = document.createElement('div');
+  e.style.marginBottom = '10px';
+  e.innerHTML = `<div class="line"><span class="prompt"><span class="u">youssef</span><span class="at">@</span><span class="h">archlinux</span> <span class="dir">~</span> $</span><span class="cmd">${cmd}</span></div><div style="padding-left:4px;margin-top:3px">${output}</div>`;
+  history.appendChild(e);
+  e.scrollIntoView({behavior:'smooth'});
+}
+
+input.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const val = input.value.trim().toLowerCase();
+    if (!val) return;
+    cmdHist.unshift(val);
+    histIdx = -1;
+    const fn = commands[val];
+    if (fn) { addEntry(val, fn()); }
+    else { addEntry(val, `<span class="out red">bash: ${val}: command not found</span>`); }
+    input.value = '';
+  } else if (e.key === 'ArrowUp') {
+    histIdx = Math.min(histIdx + 1, cmdHist.length - 1);
+    input.value = cmdHist[histIdx] || '';
+    e.preventDefault();
+  } else if (e.key === 'ArrowDown') {
+    histIdx = Math.max(histIdx - 1, -1);
+    input.value = histIdx === -1 ? '' : cmdHist[histIdx];
+    e.preventDefault();
+  }
+});
+
+document.getElementById('terminal').addEventListener('click', () => input.focus());
+</script>
